@@ -1,44 +1,296 @@
-{% extends "base.html" %}
-{% block content_title %}{% endblock %}
-{% block content %}
-<div class="uk-width-medium-4-5">
+<!DOCTYPE html>
+<html lang="en">
 
-{% if articles %}
-{% for article in articles %}
+<head>
 
-    {% if loop.index == 1 %}
-            <article class="uk-article" itemtype="http://schema.org/BlogPosting" itemscope="itemscope" itemprop="blogPost">
-                <a href="{{ SITEURL }}/{{ article.url }}" class="uk-article-title uk-link-muted" itemprop="name">{{ article.title }}</a>
-                <p class="uk-article-meta"><time datetime="{{ article.date.strftime('%Y-%m-%d') }}" itemprop="datePublished">{{ article.locale_date }}</time> • <a href="{{ SITEURL }}/{{ article.category.url }}">{{ article.category }}</a>{% if DISQUS_SITENAME %} • <br class="uk-visible-small"><i class="uk-icon-comment"></i> <a href="{{ SITEURL }}/{{ article.url }}#disqus_thread" itemprop="discussionUrl"></a>{% endif %}</p>
-</p>
-                <p class="uk-article-lead" itemprop="description">{{ article.summary|striptags }}</p>
-                <section itemprop="articleBody">{{ article.content }}</section>
-                <a href="{{ SITEURL }}/{{ article.url }}#disqus_thread"></a>
-                <hr class="uk-article-divider">
-            </article>
-    {% else %}
-        <article class="uk-article" itemtype="http://schema.org/BlogPosting" itemscope="itemscope" itemprop="blogPost">
-                <a href="{{ SITEURL }}/{{ article.url }}" class="uk-article-title uk-link-muted" itemprop="name">{{ article.title }}</a>
-                <p class="uk-article-meta"><time datetime="{{ article.date.strftime('%Y-%m-%d') }}" itemprop="datePublished">{{ article.locale_date }}</time> • <a href="{{ SITEURL }}/{{ article.category.url }}">{{ article.category }}</a>{% if DISQUS_SITENAME %} • <br class="uk-visible-small"><i class="uk-icon-comment"></i> <a href="{{ SITEURL }}/{{ article.url }}#disqus_thread" itemprop="discussionUrl"></a>{% endif %}</p>
-</p>
-                <p class="uk-article-lead" itemprop="description">{{ article.summary|striptags }}</p>
-                <p>{{ ' '.join(article.content.split(' ')[0:75])|striptags }}...</p>
-                <a href="{{ SITEURL }}/{{ article.url }}">Read More</a>
-                <hr class="uk-article-divider">
-        </article>
-    {% endif %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-{% endfor %}
-{% if DEFAULT_PAGINATION  and articles_paginator.num_pages > 1 %}
-    <ul class="uk-pagination">
-        {% if articles_previous_page %}<li><a href="{{ SITEURL }}/{{ articles_previous_page.url }}"><i class="uk-icon-angle-double-left"></i></a></li>{% endif %}
-        {% if articles_previous_page %}<li><a href="{{ SITEURL }}/{{ articles_previous_page.url }}">{{ articles_previous_page.number }}</a></li>{% endif %}
-        <li class="uk-active"><span>{{ articles_page.number }}</span></li>
-        {% if articles_next_page %}<li><a href="{{ SITEURL }}/{{ articles_next_page.url }}"><i class="uk-icon-angle-double-right"></i></a></li>{% endif %}
-        {% if articles_next_page %}<li><a href="{{ SITEURL }}/{{ articles_next_page.url }}">{{ articles_next_page.number }}</a></li>{% endif %}
-    </ul>
-{% endif %}
+    <title>{{ SITENAME }}</title>
 
-{% endif %}
-</div>
-{% endblock %}
+    <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
+    <link href="theme/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="theme/css/freelancer.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="theme/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body id="page-top" class="index">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Abrir navegación</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#page-top">{{ SITENAME }}</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#portfolio">Portafolio</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#about">Sobre nosotros</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#blog">Blog</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="#contact">Contacto</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <img class="img-responsive" src="/theme/img/profile.png" alt="" height="250" width="250">
+                    <div class="intro-text">
+                        <span class="name">{{ SITENAME }}</span>
+                        <hr class="star-light">
+                        <span class="skills">{{ SITESUBTITLE }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Portfolio Grid Section -->
+    <section id="portfolio">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>Portafolio</h2>
+                    <hr class="star-primary">
+                </div>
+            </div>
+            <div class="row">
+                {% for href, image in PORTFOLIO_ITEMS %}
+                <div class="col-sm-4 portfolio-item">
+                    <a href="{{ href }}" class="portfolio-link" data-toggle="modal">
+                        <div class="caption">
+                            <div class="caption-content">
+                                <i class="fa fa-search-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img src="{{ image }}" class="img-responsive" alt="">
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="success" id="about">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>Sobre nosotros</h2>
+                    <hr class="star-light">
+                </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6 col-md-4 col-lg-offset-2">
+                <div class="thumbnail">
+                  <img style="margin-top:10px;" src="theme/img/roger.jpg" class="img-circle" width="250px" height="250px">
+                  <div style="margin-left:10px; margin-right:10px;" class="caption">
+                    <h3>Roger González</h3>
+                    <p>Roger es un programador web con experiencia en desarrollo de aplicaciones en Python,
+                    Wordpress y cualquier tecnología que se le atraviese.</p>
+                    <p><a href="#" class="btn btn-default" role="button">Github</a> <a href="#" class="btn btn-default" role="button">Web</a></p>
+                  </div>
+                </div>
+              </div>
+               <div class="col-sm-6 col-md-4">
+                <div class="thumbnail">
+                  <img style="margin-top:10px;" src="theme/img/juan.jpg" class="img-circle" width="250px" height="250px">
+                  <div style="margin-left:10px; margin-right:10px;" class="caption">
+                    <h3>Juan González</h3>
+                     <p>
+                        Juan Carlos es estudiante de diseño gráfico con amplia experiencia en diseño de logos, banners, vectores y ediciones en general. Tambien ama los gatos.
+                    </p>
+                    <p><a href="#" class="btn btn-default" role="button">Behance</a> <a href="#" class="btn btn-default" role="button">Otra cosa</a></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="blog">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>Blog</h2>
+                    <hr class="star-primary">
+                    <p>
+                        Conoce nuestro blog sobre mantenimiento de computadoras. Tutoriales gratuitos que puedes
+                        seguir tu mismo desde tu casa.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-8 col-lg-offset-2 text-center" style="margin-top:20px;">
+                <a href="/blog" class="btn btn-lg btn-primary">
+                    <i class="fa fa-download"></i> Ir al blog
+                </a>
+            </div> 
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="success" id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>Contacto</h2>
+                    <hr class="star-light">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-lg-offset-2">
+                    <p>Si necesitas ayuda con tu computadora, o con diseños de páginas web, contacta a:</p>
+                    <a class="btn btn-success" style="color:white;" href="mailto:programador@compuserviciosdelforn.com.ve"><i class="fa fa-envelope"></i> programador@compuserviciosdelforn.com.ve</a>
+                </div>
+                <div class="col-lg-4">
+                    <p>Si buscas un diseñador gráfico para tus proyectos, contacta a:</p>
+                    <a class="btn btn-success" style="color:white;" href="mailto:disenador@compuserviciosdelforn.com.ve"><i class="fa fa-envelope"></i> disenador@compuserviciosdelforn.com.ve</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <div class="footer-above">
+            <div class="container">
+                <div class="row">
+                    <div class="footer-col col-md-4">
+                        <h3>Ubicación</h3>
+                        <p>Trigal Centro, Valencia<br>Venezuela</p>
+                    </div>
+                    <div class="footer-col col-md-4">
+                        <h3>Redes sociales</h3>
+                        <ul class="list-inline">
+                            <li>
+                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer-col col-md-4">
+                        <h3>About Freelancer</h3>
+                        <p>Freelance is a free to use, open source Bootstrap theme created by <a href="http://startbootstrap.com">Start Bootstrap</a>.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-below">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        Copyright &copy; Compuservicios Delforn 2015.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+    <div class="scroll-top page-scroll visible-xs visible-sm">
+        <a class="btn btn-primary" href="#page-top">
+            <i class="fa fa-chevron-up"></i>
+        </a>
+    </div>
+
+    <!-- Portfolio Modals -->
+    {% for href, name, image, description, client, clienturl, date, service in PORTFOLIO_DESCRIPTION  %}
+    <div class="portfolio-modal modal fade" id="{{ href }}" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h2>{{ name }}</h2>
+                            <hr class="star-primary">
+                            <img src="{{ image }}" class="img-responsive img-centered" alt="">
+                            <p>{{ description }}</p>
+                            <ul class="list-inline item-details">
+                                <li>Cliente:
+                                    <strong><a href="{{ clienturl }}">{{ client }}</a>
+                                    </strong>
+                                </li>
+                                <li>Fecha:
+                                    <strong>{{ date }}</strong>
+                                </li>
+                                <li>Servicio:
+                                    <strong>{{ service }}</strong>
+                                </li>
+                            </ul>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    <!-- jQuery -->
+    <script src="theme/js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="theme/js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="theme/js/classie.js"></script>
+    <script src="theme/js/cbpAnimatedHeader.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="theme/js/jqBootstrapValidation.js"></script>
+    <script src="theme/js/contact_me.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="theme/js/freelancer.js"></script>
+
+</body>
+
+</html>
