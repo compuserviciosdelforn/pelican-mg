@@ -48,13 +48,15 @@ hr.star-primary {
 
 hr.star-light:after,
 hr.star-primary:after {
-    content: "\f005";
+    content: "\f111";
     display: inline-block;
     position: relative;
     top: -.8em;
     padding: 0 .25em;
+    padding-right: 1em;
+    padding-left: 1em;
     font-family: FontAwesome;
-    font-size: 2em;
+    font-size: 20px;
 }
 
 hr.star-light {
