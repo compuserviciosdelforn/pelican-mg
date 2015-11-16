@@ -181,3 +181,9 @@
   position: fixed;
   width: 233px;
   top: 20px;
+}
+
+.affix-bottom {
+  position: absolute;
+  width: 233px;
+}
