@@ -54,6 +54,7 @@
 <link rel="stylesheet" href="/theme/css/tipuesearch.css">
 <link rel="stylesheet" href="/theme/css/solarized.css">
 <link rel="stylesheet" href="/theme/css/main.css">
+<link rel="stylesheet" href="/theme/css/bootstrap_stuff.css">
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.2/html5shiv.min.js"></script>
 </head>
@@ -84,8 +85,7 @@
         {% block content %}
         {% endblock %} 
     
-        <div class="uk-width-medium-1-5 uk-hidden-small">
-            
+        <div class="uk-width-medium-1-5 uk-hidden-small" data-spy="affix" data-offset-top="100">
             <div class="uk-panel uk-panel-box">
                 <form class="uk-search" action="search.html" data-uk-search>
                     <input class="uk-search-field tipue_search" type="search" name="q" id="tipue_search_input" autocomplete="off" placeholder="Buscar...">
@@ -129,7 +129,6 @@
                 {% endfor %}
             </div>
             {% endif %}
-
         </div>
 
     </div>
@@ -197,7 +196,8 @@
 <script src="/theme/js/tipuesearch.js"></script>
 <script src="/theme/js/plugins.js"></script>
 <script src="/theme/js/main.js"></script>
-
+<script src="/theme/js/bootstrap.min.js"></script>
+<script src="/theme/js/affix.js"></script>
 {% include 'disqus_count.html' %}
 {% include 'analytics.html' %}
 </body>
