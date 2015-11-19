@@ -187,7 +187,7 @@ section.success {
 }
 
 
-
+section.success a:hover,
 section.success a:focus,
 section.success a:active,
 section.success a.active {
@@ -198,11 +198,6 @@ section.success a.active {
 section.success a {
     outline: 0;
     color: #ffffff;
-}
-
-section.success a:hover {
-    outline: 0;
-    color: #18bc9c;
 }
 
 @media(max-width:767px) {
