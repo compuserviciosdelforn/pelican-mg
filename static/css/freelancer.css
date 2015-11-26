@@ -468,3 +468,7 @@ footer .footer-below {
 .white {
     color: #ffffff;
 }
+
+.social-footer {
+    margin-top: -13px;
+}
