@@ -5,7 +5,7 @@
 <div id="carousel" style="margin-bottom:20px;" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
     {% for counter in BANNER %}
-    <li data-target="#carousel" data-slide-to="{{ loop.index }}" {% if loop.first %}class="active"{% endif %}></li>
+    <li data-target="#carousel" data-slide-to="{{ loop.index - 1 }}" {% if loop.first %}class="active"{% endif %}></li>
     {% endfor %}
     </ol>
   <div class="carousel-inner" role="listbox">
