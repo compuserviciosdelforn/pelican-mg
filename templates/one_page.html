@@ -124,9 +124,8 @@
                   <img style="margin-top:10px;" src="{{ SITEURL }}/{{ ROGER_IMAGE }}" class="img-circle" width="250px" height="250px">
                   <div style="margin-left:10px; margin-right:10px;" class="caption">
                     <h3>Roger González</h3>
-                    <p style="font-size:16px;">Roger es un programador web con experiencia en desarrollo de aplicaciones en Python,
-                    Wordpress y cualquier tecnología que se le atraviese.</p>
-                    <p><a href="https://github.com/Rogergonzalez21" target="_blank" class="btn btn-default" role="button"><i class="fa fa-github"></i> Github</a> <a href="http://rogerandresgonzalez.com.ve" target="_blank" class="btn btn-default" role="button"><i class="fa fa-globe"></i> Web</a></p>
+                    <p style="font-size:16px;">Roger es un programador web con experiencia en desarrollo de aplicaciones en Python, Wordpress y cualquier tecnología que se le atraviese.</p>
+                    <p><a href="https://github.com/Rogergonzalez21" target="_blank" class="btn btn-default" role="button"><i class="fa fa-github"></i> Github</a> <a href="http://rogerandresgonzalez.com.ve" target="_blank" class="btn btn-default" role="button"><i class="fa fa-globe"></i> Web</a> <a href="https://twitter.com/RogerGonzalez21" target="_blank" class="btn btn-default" role="button"><i class="fa fa-twitter"></i> Twitter</a></p>
                   </div>
                 </div>
               </div>
@@ -292,7 +291,7 @@
                             <p>{{ description }}</p>
                             <ul class="list-inline item-details">
                                 <li>Cliente:
-                                    <strong><a href="{{ clienturl }}">{{ client }}</a>
+                                    <strong>{% if clienturl != '' %}<a href="{{ clienturl }}">{% endif %}{{ client }}{% if clienturl != '' %}</a>{% endif %}
                                     </strong>
                                 </li>
                                 <li>Fecha:
