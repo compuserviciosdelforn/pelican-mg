@@ -9,9 +9,9 @@
     {% endfor %}
     </ol>
   <div class="carousel-inner" role="listbox">
-  {% for url, image in BANNER %}
+  {% for url, image, tab in BANNER %}
     <div class="item {% if loop.first %}active{% endif %}">
-      {% if url != '' %}<a href="{{ url }}">{% endif %}<img src="{{ SITEURL }}/{{ image }}">{% if url != '' %}</a>{% endif %}
+      {% if url != '' %}<a href="{{ url }}" {% if tab %}target="_blank"{% endif %}>{% endif %}<img src="{{ SITEURL }}/{{ image }}">{% if url != '' %}</a>{% endif %}
     </div>
   {% endfor %}
   </div>
