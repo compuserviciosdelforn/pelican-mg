@@ -272,7 +272,7 @@
     </div>
 
     <!-- Portfolio Modals -->
-    {% for href, name, image, description, client, clienturl, date, service in PORTFOLIO_DESCRIPTION  %}
+    {% for href, name, image, description, client, clienturl, date, service, source in PORTFOLIO_DESCRIPTION  %}
     <div class="portfolio-modal modal fade" id="{{ href }}" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
             <div class="close-modal" data-dismiss="modal">
@@ -301,6 +301,9 @@
                                     <strong>{{ service }}</strong>
                                 </li>
                             </ul>
+                            {% if source != '' %}
+                            <a class="btn btn-default" href="{{ source }}">Fuente</a>
+                            {% endif %}
                             <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Cerrar</button>
                         </div>
                     </div>
